@@ -35,7 +35,7 @@ public class Peon extends Ficha {
         // 50x50 dibujar la ficha
         g.setPaint(new GradientPaint(x, y,
                 getColor() == Color.BLANCO ? java.awt.Color.CYAN : java.awt.Color.BLACK,
-                x + 100, y + 50,
+                x + 50, y + 50,
                 java.awt.Color.WHITE));
         g.fill(new Ellipse2D.Float(x + 17, y + 15, 16, 16));
         g.fill(new Rectangle2D.Float(x + 15, y + 30, 20, 15));

@@ -5,7 +5,7 @@
  */
 package co.edu.utp.isc.pro4.ajedrez.ui;
 
-import co.edu.utp.isc.pro4.ajedrez.modelo.Ajedrez;
+import co.edu.utp.isc.pro4.ajedrez.controlador.Ajedrez;
 import co.edu.utp.isc.pro4.ajedrez.modelo.Jugador;
 
 /**
@@ -15,6 +15,7 @@ import co.edu.utp.isc.pro4.ajedrez.modelo.Jugador;
 public class FrmAjedrez extends javax.swing.JFrame {
 
     private Ajedrez juego;
+    private boolean jugadaInicial = true;
 
     /**
      * Creates new form FrmAjedrez
@@ -51,6 +52,12 @@ public class FrmAjedrez extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtMovimientos = new javax.swing.JTextArea();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtInicio = new javax.swing.JTextField();
+        txtFin = new javax.swing.JTextField();
+        lblJugador = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -116,10 +123,23 @@ public class FrmAjedrez extends javax.swing.JFrame {
         jPanel2.setLayout(new java.awt.BorderLayout());
 
         pnlTablero.setPreferredSize(new java.awt.Dimension(400, 400));
+        pnlTablero.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                pnlTableroMouseMoved(evt);
+            }
+        });
+        pnlTablero.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                pnlTableroMouseReleased(evt);
+            }
+        });
         jPanel2.add(pnlTablero, java.awt.BorderLayout.WEST);
 
         jPanel4.setPreferredSize(new java.awt.Dimension(250, 250));
-        jPanel4.setLayout(new java.awt.BorderLayout());
+        java.awt.GridBagLayout jPanel4Layout = new java.awt.GridBagLayout();
+        jPanel4Layout.columnWidths = new int[] {0};
+        jPanel4Layout.rowHeights = new int[] {0, 5, 0, 5, 0};
+        jPanel4.setLayout(jPanel4Layout);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Cronometro"));
         java.awt.GridBagLayout jPanel3Layout = new java.awt.GridBagLayout();
@@ -167,7 +187,11 @@ public class FrmAjedrez extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 5);
         jPanel3.add(jTextField2, gridBagConstraints);
 
-        jPanel4.add(jPanel3, java.awt.BorderLayout.NORTH);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPanel4.add(jPanel3, gridBagConstraints);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Movimientos"));
         jPanel5.setLayout(new java.awt.BorderLayout());
@@ -179,7 +203,72 @@ public class FrmAjedrez extends javax.swing.JFrame {
 
         jPanel5.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        jPanel4.add(jPanel5, java.awt.BorderLayout.CENTER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        jPanel4.add(jPanel5, gridBagConstraints);
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Jugada"));
+        java.awt.GridBagLayout jPanel7Layout = new java.awt.GridBagLayout();
+        jPanel7Layout.columnWidths = new int[] {0, 5, 0};
+        jPanel7Layout.rowHeights = new int[] {0, 5, 0, 5, 0};
+        jPanel7.setLayout(jPanel7Layout);
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Inicio");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        jPanel7.add(jLabel5, gridBagConstraints);
+
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Fin");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        jPanel7.add(jLabel6, gridBagConstraints);
+
+        txtInicio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 0);
+        jPanel7.add(txtInicio, gridBagConstraints);
+
+        txtFin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 5);
+        jPanel7.add(txtFin, gridBagConstraints);
+
+        lblJugador.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblJugador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJugador.setText("Cesar");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
+        jPanel7.add(lblJugador, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPanel4.add(jPanel7, gridBagConstraints);
 
         jPanel2.add(jPanel4, java.awt.BorderLayout.CENTER);
 
@@ -190,18 +279,39 @@ public class FrmAjedrez extends javax.swing.JFrame {
 
     private void btnJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugarActionPerformed
         btnJugar.setEnabled(false);
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                juego = new Ajedrez(
-                        new Jugador(txtBlancas.getText().trim()),
-                        new Jugador(txtNegras.getText().trim()));
-                juego.setPnlTablero((PnlTablero) pnlTablero);
-                juego.jugar();
-            }
-        });
-
+        juego = new Ajedrez(
+                new Jugador(txtBlancas.getText().trim()),
+                new Jugador(txtNegras.getText().trim()));
+        juego.setPnlTablero((PnlTablero) pnlTablero);
+        juego.jugar();
     }//GEN-LAST:event_btnJugarActionPerformed
+
+    private void pnlTableroMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTableroMouseReleased
+        // TODO add your handling code here:
+        if (juego != null) {
+//            System.out.print(evt.getX() + ", " + evt.getY() + " = ");
+            int col = 1 + evt.getX() / 50;
+            int row = 1 + evt.getY() / 50;
+//            System.out.print(col + ", " + row + " = ");
+            System.out.println((char) ('A' + col - 1) + Integer.toString(row));
+            if (jugadaInicial) {
+                txtInicio.setText((char) ('A' + col - 1) + Integer.toString(row));
+                jugadaInicial = false;
+            } else {
+                txtFin.setText((char) ('A' + col - 1) + Integer.toString(row));
+                jugadaInicial = true;
+            }
+        }
+    }//GEN-LAST:event_pnlTableroMouseReleased
+
+    private void pnlTableroMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTableroMouseMoved
+        // TODO add your handling code here:
+        if (juego != null) {
+            int col = 1 + evt.getX() / 50;
+            int row = 1 + evt.getY() / 50;
+            pnlTablero.setToolTipText((char) ('A' + col - 1) + Integer.toString(row));
+        }
+    }//GEN-LAST:event_pnlTableroMouseMoved
 
     /**
      * @param args the command line arguments
@@ -241,16 +351,22 @@ public class FrmAjedrez extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lblJugador;
     private javax.swing.JPanel pnlTablero;
     private javax.swing.JTextField txtBlancas;
+    private javax.swing.JTextField txtFin;
+    private javax.swing.JTextField txtInicio;
     private javax.swing.JTextArea txtMovimientos;
     private javax.swing.JTextField txtNegras;
     // End of variables declaration//GEN-END:variables

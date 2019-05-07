@@ -5,6 +5,7 @@
  */
 package co.edu.utp.isc.pro4.ajedrez.modelo;
 
+import co.edu.utp.isc.pro4.ajedrez.controlador.Dibujable;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 

@@ -5,6 +5,8 @@
  */
 package co.edu.utp.isc.pro4.ajedrez.modelo;
 
+import co.edu.utp.isc.pro4.ajedrez.controlador.Dibujable;
+
 /**
  *
  * @author utp

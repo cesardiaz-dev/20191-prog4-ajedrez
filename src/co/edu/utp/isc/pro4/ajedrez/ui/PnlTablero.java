@@ -5,9 +5,7 @@
  */
 package co.edu.utp.isc.pro4.ajedrez.ui;
 
-import co.edu.utp.isc.pro4.ajedrez.modelo.Casilla;
 import co.edu.utp.isc.pro4.ajedrez.modelo.Tablero;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
@@ -28,7 +26,7 @@ public class PnlTablero extends JPanel {
     public void paint(Graphics g) {
         System.out.println("Pintando Objetos");
         if (tablero == null) {
-            super.paintComponent(g);
+            super.paint(g);
             return;
         }
         Graphics2D g2 = (Graphics2D) g;
