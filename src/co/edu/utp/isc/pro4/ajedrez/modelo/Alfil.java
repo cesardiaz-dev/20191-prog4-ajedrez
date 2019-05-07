@@ -5,7 +5,9 @@
  */
 package co.edu.utp.isc.pro4.ajedrez.modelo;
 
+import java.awt.GradientPaint;
 import java.awt.Graphics2D;
+import java.awt.geom.GeneralPath;
 
 /**
  *
@@ -29,7 +31,7 @@ public class Alfil extends Ficha {
 
     @Override
     public void draw(Graphics2D g, float x, float y) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //TODO Dibujar la figura
     }
     
 }

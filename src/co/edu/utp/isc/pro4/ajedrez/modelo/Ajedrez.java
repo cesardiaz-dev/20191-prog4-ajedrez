@@ -12,9 +12,9 @@ import co.edu.utp.isc.pro4.ajedrez.ui.PnlTablero;
  * @author utp: odau
  */
 public class Ajedrez {
-    
+
     /*Temporal*/
-    PnlTablero pnlTablero;
+    private PnlTablero pnlTablero;
 
     private Jugador[] jugadores;
     private Tablero tablero;
@@ -36,7 +36,7 @@ public class Ajedrez {
         this.jugadores[0] = jugador1;
         this.jugadores[1] = jugador2;
     }
-    
+
     public void setPnlTablero(PnlTablero pnlTablero) {
         this.pnlTablero = pnlTablero;
         pnlTablero.setTablero(tablero);
@@ -47,9 +47,10 @@ public class Ajedrez {
         jugadores[1].setAjedrez(this);
 
         ubicarFichasTablero();
-        mostrarTablero();
 
         cronometro.iniciar();
+        mostrarTablero();
+        /*
         do {
             jugadores[turno].jugar();
             // Validar si hay Jaque Mate y terminar
@@ -75,6 +76,7 @@ public class Ajedrez {
         } else {
             System.out.println("Los jugadores han quedado en tablas");
         }
+         */
     }
 
     public void cambioTurno() {
@@ -128,15 +130,15 @@ public class Ajedrez {
     }
 
     private void mostrarTablero() {
-        pnlTablero.dibujar();
-        System.out.println("  \tA \tB \tC \tD \tE \tF \tG \tH");
-        for (int i = 0; i < 8; i++) {
-            System.out.print((i + 1));
-            for (int j = 0; j < 8; j++) {
-                System.out.print("\t" + tablero.getCasilla(i, j));
-            }
-            System.out.println();
-        }
+        pnlTablero.updateUI();
+//        System.out.println("  \tA \tB \tC \tD \tE \tF \tG \tH");
+//        for (int i = 0; i < 8; i++) {
+//            System.out.print((i + 1));
+//            for (int j = 0; j < 8; j++) {
+//                System.out.print("\t" + tablero.getCasilla(i, j));
+//            }
+//            System.out.println();
+//        }
     }
 
 }

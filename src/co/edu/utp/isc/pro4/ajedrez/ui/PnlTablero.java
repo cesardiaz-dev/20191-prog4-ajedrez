@@ -7,6 +7,7 @@ package co.edu.utp.isc.pro4.ajedrez.ui;
 
 import co.edu.utp.isc.pro4.ajedrez.modelo.Casilla;
 import co.edu.utp.isc.pro4.ajedrez.modelo.Tablero;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
@@ -22,28 +23,21 @@ public class PnlTablero extends JPanel {
     public void setTablero(Tablero tablero) {
         this.tablero = tablero;
     }
-    
-    public void dibujar(){
-        updateUI();
-    }
 
     @Override
     public void paint(Graphics g) {
-        if(tablero == null) {
-            super.paint(g);
-            return ;
+        System.out.println("Pintando Objetos");
+        if (tablero == null) {
+            super.paintComponent(g);
+            return;
         }
-        Graphics2D g2 = (Graphics2D)g;
+        Graphics2D g2 = (Graphics2D) g;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                Casilla casilla = tablero.getCasilla(i, j);
-                casilla.draw(g2, i*50, j*50);
+                tablero.getCasilla(i, j)
+                        .draw(g2, j * 50, i * 50);
             }
         }
     }
-    
-    
-    
-    
-   
+
 }

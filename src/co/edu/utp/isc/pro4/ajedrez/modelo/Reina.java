@@ -30,7 +30,7 @@ public class Reina extends Ficha {
 
     @Override
     public void draw(Graphics2D g, float x, float y) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //TODO Dibujar la figura
     }
     
 }
